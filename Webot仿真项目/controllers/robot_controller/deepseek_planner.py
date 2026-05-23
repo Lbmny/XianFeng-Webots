@@ -12,7 +12,7 @@ import os
 import numpy as np
 import requests
 
-API_KEY = "sk-42d877250eac44cc8634fed801d8f773"
+API_KEY = "0"
 API_URL = "https://api.deepseek.com/v1/chat/completions"
 
 CLASS_NAMES_CN = ["硬质路面", "泥地", "碎石", "浅水", "深水", "陡坡", "废墟"]
