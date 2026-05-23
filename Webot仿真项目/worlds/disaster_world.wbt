@@ -1,0 +1,963 @@
+#VRML_SIM R2025a utf8
+
+WorldInfo {
+  title "Disaster Rescue Scene — River Crossing"
+  basicTimeStep 32
+  contactProperties [
+    ContactProperties { material1 "hard_ground" coulombFriction 0.8 bumpSound "" rollSound "" slideSound "" }
+    ContactProperties { material1 "mud_ground" coulombFriction 0.3 bumpSound "" rollSound "" slideSound "" }
+    ContactProperties { material1 "gravel_ground" coulombFriction 0.5 bumpSound "" rollSound "" slideSound "" }
+    ContactProperties { material1 "rubble_ground" coulombFriction 0.4 bumpSound "" rollSound "" slideSound "" }
+    ContactProperties { material1 "water_ground" coulombFriction 0.1 bumpSound "" rollSound "" slideSound "" }
+    ContactProperties { material1 "slope_ground" coulombFriction 0.6 bumpSound "" rollSound "" slideSound "" }
+  ]
+}
+
+Viewpoint {
+  orientation -0.2 -0.8 0.5 1.5
+  position 0 20 15
+}
+
+Background {
+  skyColor [ 0.4 0.6 0.9 ]
+}
+
+DEF SUN DirectionalLight {
+  direction -0.5 -0.8 -1
+  intensity 1.0
+  castShadows TRUE
+}
+
+DEF FOG Fog {
+  fogType "EXPONENTIAL"
+  visibilityRange 0
+  color 0.7 0.7 0.7
+}
+
+# ============================================================
+# 底板 — 品红色警示层（地形边界标记）
+# 颜色(0.85,0.12,0.55)与所有7类地形形成鲜明对比
+# 地形块之间的缝隙和地图边缘会显露此色，提供边界判断线索
+# ============================================================
+Solid {
+  translation 0 0 -0.25
+  name "base_floor"
+  children [
+    Shape {
+      appearance Appearance { material Material { diffuseColor 0.85 0.12 0.55 } }
+      geometry Box { size 50 50 0.05 }
+    }
+  ]
+  boundingObject Box { size 50 50 0.05 }
+}
+
+# ============================================================
+# 北岸 — 出发区 (y: 6~22)
+# ============================================================
+
+Solid {
+  translation -9 14 0
+  name "hard_north"
+  contactMaterial "hard_ground"
+  children [
+    Shape {
+      appearance Appearance { material Material { diffuseColor 0.2 0.2 0.22 } }
+      geometry Box { size 20 16 0.05 }
+    }
+  ]
+  boundingObject Box { size 20 16 0.05 }
+}
+
+Solid {
+  translation 10 14 0
+  name "mud_east"
+  contactMaterial "mud_ground"
+  children [
+    Shape {
+      appearance Appearance { material Material { diffuseColor 0.3 0.15 0.03 } }
+      geometry Box { size 18 16 0.05 }
+    }
+  ]
+  boundingObject Box { size 18 16 0.05 }
+}
+
+# ── 北岸硬地↔泥地边界线 (x≈1, 品红色, 16m长) ──
+DEF BOUNDARY_HM Solid {
+  translation 1 14 0.01
+  name "boundary_hard_mud"
+  children [
+    Shape {
+      appearance Appearance { material Material { diffuseColor 0.85 0.12 0.55 } }
+      geometry Box { size 0.12 16 0.06 }
+    }
+  ]
+  boundingObject Box { size 0.12 16 0.06 }
+}
+
+# ============================================================
+# 河滩过渡带 (y: 4~6 和 -6~-4, z=-0.05)
+# ============================================================
+
+Solid {
+  translation 0 5 -0.05
+  name "beach_north"
+  contactMaterial "hard_ground"
+  children [
+    Shape {
+      appearance Appearance { material Material { diffuseColor 0.55 0.48 0.28 } }
+      geometry Box { size 38 2 0.05 }
+    }
+  ]
+  boundingObject Box { size 38 2 0.05 }
+}
+
+Solid {
+  translation 0 -5 -0.05
+  name "beach_south"
+  contactMaterial "hard_ground"
+  children [
+    Shape {
+      appearance Appearance { material Material { diffuseColor 0.55 0.48 0.28 } }
+      geometry Box { size 38 2 0.05 }
+    }
+  ]
+  boundingObject Box { size 38 2 0.05 }
+}
+
+# ============================================================
+# 水域 — 河流 (y: -4~4, z=-0.15)  水面低于陆地15cm
+# ============================================================
+
+Solid {
+  translation 0 0 -0.15
+  name "water_river"
+  contactMaterial "water_ground"
+  children [
+    Shape {
+      appearance Appearance { material Material { diffuseColor 0.05 0.2 0.55 } }
+      geometry Box { size 38 8 0.05 }
+    }
+  ]
+  boundingObject Box { size 38 8 0.05 }
+}
+
+# ============================================================
+# 南岸 — 目标区 (y: -6~-18)
+# ============================================================
+
+# ── 南岸碎石↔废墟边界线 (y≈-12, 品红色分界) ──
+DEF BOUNDARY_GR Solid {
+  translation -6.5 -12 0.01
+  name "boundary_gravel_rubble"
+  children [
+    Shape {
+      appearance Appearance { material Material { diffuseColor 0.85 0.12 0.55 } }
+      geometry Box { size 25 0.12 0.06 }
+    }
+  ]
+  boundingObject Box { size 25 0.12 0.06 }
+}
+
+# 南岸西侧 — 碎石区 (上半, y:-12~-6, 25×6=150m²)
+Solid {
+  translation -6.5 -9 0
+  name "gravel_west"
+  contactMaterial "gravel_ground"
+  children [
+    Shape {
+      appearance Appearance { material Material { diffuseColor 0.72 0.55 0.15 } }
+      geometry Box { size 25 6 0.05 }
+    }
+  ]
+  boundingObject Box { size 25 6 0.05 }
+}
+
+# 南岸西侧 — 废墟区 (下半, y:-18~-12, 25×6=150m²) ← 与碎石区 1:1
+Solid {
+  translation -6.5 -15 0
+  name "rubble_zone"
+  contactMaterial "rubble_ground"
+  children [
+    Shape {
+      appearance Appearance { material Material { diffuseColor 0.65 0.25 0.12 } }
+      geometry Box { size 25 6 0.05 }
+    }
+  ]
+  boundingObject Box { size 25 6 0.05 }
+}
+
+Solid {
+  translation 12.5 -12 0
+  name "hard_south"
+  contactMaterial "hard_ground"
+  children [
+    Shape {
+      appearance Appearance { material Material { diffuseColor 0.2 0.2 0.22 } }
+      geometry Box { size 13 12 0.05 }
+    }
+  ]
+  boundingObject Box { size 13 12 0.05 }
+}
+
+# ============================================================
+# 废墟障碍 — 散布在南岸安全区，制造绕行需求
+# ============================================================
+
+Solid {
+  translation 7 -10 0.15
+  name "rubble_debris_1"
+  contactMaterial "rubble_ground"
+  children [
+    Shape {
+      geometry Box { size 1.2 0.8 0.5 }
+      appearance Appearance { material Material { diffuseColor 0.65 0.25 0.12 } }
+    }
+  ]
+  boundingObject Box { size 1.2 0.8 0.5 }
+}
+
+Solid {
+  translation 13 -14 0.2
+  name "rubble_debris_2"
+  contactMaterial "rubble_ground"
+  children [
+    Shape {
+      geometry Box { size 0.8 1.0 0.6 }
+      appearance Appearance { material Material { diffuseColor 0.6 0.22 0.1 } }
+    }
+  ]
+  boundingObject Box { size 0.8 1.0 0.6 }
+}
+
+Solid {
+  translation 11 -9 0.25
+  name "rubble_debris_3"
+  contactMaterial "rubble_ground"
+  children [
+    Shape {
+      geometry Box { size 0.7 0.6 0.7 }
+      appearance Appearance { material Material { diffuseColor 0.6 0.22 0.1 } }
+    }
+  ]
+  boundingObject Box { size 0.7 0.6 0.7 }
+}
+
+Solid {
+  translation 6 -16 0.12
+  name "rubble_debris_4"
+  contactMaterial "rubble_ground"
+  children [
+    Shape {
+      geometry Box { size 0.6 0.8 0.35 }
+      appearance Appearance { material Material { diffuseColor 0.65 0.25 0.12 } }
+    }
+  ]
+  boundingObject Box { size 0.6 0.8 0.35 }
+}
+
+Solid {
+  translation 15 -11 0.18
+  name "rubble_debris_5"
+  contactMaterial "rubble_ground"
+  children [
+    Shape {
+      geometry Box { size 0.5 0.5 0.55 }
+      appearance Appearance { material Material { diffuseColor 0.6 0.22 0.1 } }
+    }
+  ]
+  boundingObject Box { size 0.5 0.5 0.55 }
+}
+
+# ============================================================
+# 高低起伏地形 — 体现全地形+臂摆式履带优势
+# ============================================================
+
+# ① 硬地爬坡 (12° 斜坡，机器人南下时攀爬)
+Solid {
+  translation -9 12 0.15
+  rotation 1 0 0 -0.21
+  name "hard_hill"
+  contactMaterial "hard_ground"
+  children [
+    Shape {
+      geometry Box { size 6 3 0.12 }
+      appearance Appearance { material Material { diffuseColor 0.22 0.22 0.24 } }
+    }
+  ]
+  boundingObject Box { size 6 3 0.12 }
+}
+
+# ①+ 30°陡坡 — 创新点一极限坡度测试 (硬地北侧)
+Solid {
+  translation -14 20 0.25
+  rotation 1 0 0 -0.52
+  name "steep_slope"
+  contactMaterial "slope_ground"
+  children [
+    Shape {
+      geometry Box { size 3 2 0.12 }
+      appearance Appearance { material Material { diffuseColor 0.55 0.25 0.15 } }
+    }
+  ]
+  boundingObject Box { size 3 2 0.12 }
+}
+
+# ①++ 20°碎石坡 — 南岸碎石区西侧
+Solid {
+  translation -18 -6 0.18
+  rotation 1 0 0 -0.35
+  name "slope_gravel_20"
+  contactMaterial "slope_ground"
+  children [
+    Shape {
+      geometry Box { size 3 2 0.12 }
+      appearance Appearance { material Material { diffuseColor 0.55 0.25 0.15 } }
+    }
+  ]
+  boundingObject Box { size 3 2 0.12 }
+}
+
+# ①+++ 25°南岸坡 — 硬地南侧
+Solid {
+  translation 18 -12 0.22
+  rotation 1 0 0 -0.44
+  name "slope_south_25"
+  contactMaterial "slope_ground"
+  children [
+    Shape {
+      geometry Box { size 3 2 0.12 }
+      appearance Appearance { material Material { diffuseColor 0.55 0.25 0.15 } }
+    }
+  ]
+  boundingObject Box { size 3 2 0.12 }
+}
+
+# ② 泥地起伏群 — 模拟泥泞不平路面，考验牵引力
+Solid {
+  translation 8 17 0.03
+  name "mud_bump_1"
+  contactMaterial "mud_ground"
+  children [
+    Shape {
+      geometry Box { size 3 1.5 0.08 }
+      appearance Appearance { material Material { diffuseColor 0.3 0.15 0.03 } }
+    }
+  ]
+  boundingObject Box { size 3 1.5 0.08 }
+}
+
+Solid {
+  translation 13 12 0.05
+  name "mud_bump_2"
+  contactMaterial "mud_ground"
+  children [
+    Shape {
+      geometry Box { size 2 2 0.1 }
+      appearance Appearance { material Material { diffuseColor 0.3 0.15 0.03 } }
+    }
+  ]
+  boundingObject Box { size 2 2 0.1 }
+}
+
+Solid {
+  translation 6 10 0.04
+  name "mud_bump_3"
+  contactMaterial "mud_ground"
+  children [
+    Shape {
+      geometry Box { size 2.5 1.2 0.07 }
+      appearance Appearance { material Material { diffuseColor 0.3 0.15 0.03 } }
+    }
+  ]
+  boundingObject Box { size 2.5 1.2 0.07 }
+}
+
+# ③ 河岸护堤 — 出水后立即可见的凸起边缘
+Solid {
+  translation 0 -7 0.03
+  name "river_bank"
+  contactMaterial "hard_ground"
+  children [
+    Shape {
+      geometry Box { size 14 1.5 0.1 }
+      appearance Appearance { material Material { diffuseColor 0.45 0.42 0.35 } }
+    }
+  ]
+  boundingObject Box { size 14 1.5 0.1 }
+}
+
+# ④ 碎石起伏群 — 模拟松散石块路面
+Solid {
+  translation -12 -10 0.05
+  name "gravel_mound_1"
+  contactMaterial "gravel_ground"
+  children [
+    Shape {
+      geometry Box { size 2 1.5 0.1 }
+      appearance Appearance { material Material { diffuseColor 0.72 0.55 0.15 } }
+    }
+  ]
+  boundingObject Box { size 2 1.5 0.1 }
+}
+
+Solid {
+  translation -5 -15 0.04
+  name "gravel_mound_2"
+  contactMaterial "gravel_ground"
+  children [
+    Shape {
+      geometry Box { size 1.8 1.8 0.08 }
+      appearance Appearance { material Material { diffuseColor 0.72 0.55 0.15 } }
+    }
+  ]
+  boundingObject Box { size 1.8 1.8 0.08 }
+}
+
+Solid {
+  translation -10 -8 0.06
+  name "gravel_mound_3"
+  contactMaterial "gravel_ground"
+  children [
+    Shape {
+      geometry Box { size 3 1 0.12 }
+      appearance Appearance { material Material { diffuseColor 0.72 0.55 0.15 } }
+    }
+  ]
+  boundingObject Box { size 3 1 0.12 }
+}
+
+Solid {
+  translation 2 -14 0.05
+  name "gravel_mound_4"
+  contactMaterial "gravel_ground"
+  children [
+    Shape {
+      geometry Box { size 2.5 1.8 0.1 }
+      appearance Appearance { material Material { diffuseColor 0.72 0.55 0.15 } }
+    }
+  ]
+  boundingObject Box { size 2.5 1.8 0.1 }
+}
+
+# ⑤ 废墟台阶 — 逐级攀爬 (8cm→16cm→24cm)，展示臂摆式履带越障能力
+Solid {
+  translation 10 -7 0.04
+  name "rubble_step_1"
+  contactMaterial "rubble_ground"
+  children [
+    Shape {
+      geometry Box { size 1.5 1.0 0.08 }
+      appearance Appearance { material Material { diffuseColor 0.6 0.22 0.1 } }
+    }
+  ]
+  boundingObject Box { size 1.5 1.0 0.08 }
+}
+
+Solid {
+  translation 9.5 -8.5 0.10
+  name "rubble_step_2"
+  contactMaterial "rubble_ground"
+  children [
+    Shape {
+      geometry Box { size 1.2 0.9 0.16 }
+      appearance Appearance { material Material { diffuseColor 0.6 0.22 0.1 } }
+    }
+  ]
+  boundingObject Box { size 1.2 0.9 0.16 }
+}
+
+Solid {
+  translation 10.5 -10 0.18
+  name "rubble_step_3"
+  contactMaterial "rubble_ground"
+  children [
+    Shape {
+      geometry Box { size 1.0 0.8 0.24 }
+      appearance Appearance { material Material { diffuseColor 0.6 0.22 0.1 } }
+    }
+  ]
+  boundingObject Box { size 1.0 0.8 0.24 }
+}
+
+# ============================================================
+# 台风灾后障碍物 — 倒木/电线杆/倒塌墙体/散落碎片/积水坑
+# 比例基准：机器人 0.8×1.2×0.3m，轮半径12cm
+# ============================================================
+
+# ⑥ 倒地树木 — 台风刮倒的大树，横亘硬地路面 (φ30cm × 3m)
+Solid {
+  translation -9 16 0.15
+  rotation 0 1 0 1.57
+  name "fallen_tree_hard"
+  contactMaterial "hard_ground"
+  children [
+    Shape {
+      geometry Cylinder { radius 0.15 height 3.0 }
+      appearance Appearance { material Material { diffuseColor 0.3 0.2 0.1 } }
+    }
+  ]
+  boundingObject Cylinder { radius 0.15 height 3.0 }
+}
+
+# ⑦ 倒地树木 — 被洪水冲到河岸边的树干 (φ24cm × 2.5m)
+Solid {
+  translation 5 3 0.12
+  rotation 0 1 0 0.8
+  name "fallen_tree_shore"
+  contactMaterial "water_ground"
+  children [
+    Shape {
+      geometry Cylinder { radius 0.12 height 2.5 }
+      appearance Appearance { material Material { diffuseColor 0.35 0.25 0.15 } }
+    }
+  ]
+  boundingObject Cylinder { radius 0.12 height 2.5 }
+}
+
+# ⑧ 倒伏电线杆 — 台风折断的水泥电线杆 (φ16cm × 4m)
+Solid {
+  translation 12 16 0.08
+  rotation 0 1 0 1.57
+  name "utility_pole"
+  contactMaterial "mud_ground"
+  children [
+    Shape {
+      geometry Cylinder { radius 0.08 height 4.0 }
+      appearance Appearance { material Material { diffuseColor 0.5 0.45 0.4 } }
+    }
+  ]
+  boundingObject Cylinder { radius 0.08 height 4.0 }
+}
+
+# ⑨ 倒塌墙体 — 建筑残骸斜卧碎石区 (1.5×0.25×0.45m)
+Solid {
+  translation -5 -14 0.1
+  rotation 0 0 1 0.3
+  name "collapsed_wall"
+  contactMaterial "rubble_ground"
+  children [
+    Shape {
+      geometry Box { size 1.5 0.25 0.45 }
+      appearance Appearance { material Material { diffuseColor 0.6 0.22 0.1 } }
+    }
+  ]
+  boundingObject Box { size 1.5 0.25 0.45 }
+}
+
+# ⑩ 浅水滩 — 机器人可涉水区域 (6×5m, z=-0.04, 水深4cm)
+Solid {
+  translation -12 8 -0.04
+  name "pothole_1"
+  contactMaterial "water_ground"
+  children [
+    Shape {
+      geometry Box { size 6.0 5.0 0.06 }
+      appearance Appearance { material Material { diffuseColor 0.1 0.45 0.5 } }
+    }
+  ]
+  boundingObject Box { size 6.0 5.0 0.06 }
+}
+
+# ⑩+ 浅水滩2 — 南岸低洼积水
+Solid {
+  translation 14 -3 -0.04
+  name "pothole_2"
+  contactMaterial "water_ground"
+  children [
+    Shape {
+      geometry Box { size 5.0 4.0 0.06 }
+      appearance Appearance { material Material { diffuseColor 0.1 0.45 0.5 } }
+    }
+  ]
+  boundingObject Box { size 5.0 4.0 0.06 }
+}
+
+# ⑪ 散落碎片群 — 台风卷起的建筑/树木碎片 (8处，散布全图避免集中)
+Solid {
+  translation -15 20 0.06
+  name "debris_scatter_1"
+  children [
+    Shape {
+      geometry Box { size 0.2 0.25 0.15 }
+      appearance Appearance { material Material { diffuseColor 0.5 0.45 0.4 } }
+    }
+  ]
+  boundingObject Box { size 0.2 0.25 0.15 }
+}
+
+Solid {
+  translation -3 20 0.04
+  name "debris_scatter_2"
+  children [
+    Shape {
+      geometry Box { size 0.15 0.2 0.12 }
+      appearance Appearance { material Material { diffuseColor 0.4 0.38 0.35 } }
+    }
+  ]
+  boundingObject Box { size 0.15 0.2 0.12 }
+}
+
+Solid {
+  translation 16 20 0.05
+  name "debris_scatter_3"
+  children [
+    Shape {
+      geometry Box { size 0.25 0.15 0.18 }
+      appearance Appearance { material Material { diffuseColor 0.45 0.4 0.35 } }
+    }
+  ]
+  boundingObject Box { size 0.25 0.15 0.18 }
+}
+
+Solid {
+  translation 5 8 0.04
+  name "debris_scatter_4"
+  children [
+    Shape {
+      geometry Box { size 0.18 0.22 0.1 }
+      appearance Appearance { material Material { diffuseColor 0.42 0.4 0.38 } }
+    }
+  ]
+  boundingObject Box { size 0.18 0.22 0.1 }
+}
+
+Solid {
+  translation -16 -4 0.03
+  name "debris_scatter_5"
+  children [
+    Shape {
+      geometry Box { size 0.12 0.18 0.08 }
+      appearance Appearance { material Material { diffuseColor 0.48 0.42 0.38 } }
+    }
+  ]
+  boundingObject Box { size 0.12 0.18 0.08 }
+}
+
+Solid {
+  translation 17 -8 0.05
+  name "debris_scatter_6"
+  children [
+    Shape {
+      geometry Box { size 0.2 0.12 0.14 }
+      appearance Appearance { material Material { diffuseColor 0.5 0.45 0.4 } }
+    }
+  ]
+  boundingObject Box { size 0.2 0.12 0.14 }
+}
+
+Solid {
+  translation -16 -17 0.04
+  name "debris_scatter_7"
+  children [
+    Shape {
+      geometry Box { size 0.15 0.2 0.1 }
+      appearance Appearance { material Material { diffuseColor 0.43 0.4 0.37 } }
+    }
+  ]
+  boundingObject Box { size 0.15 0.2 0.1 }
+}
+
+Solid {
+  translation 16 -17 0.06
+  name "debris_scatter_8"
+  children [
+    Shape {
+      geometry Box { size 0.22 0.18 0.16 }
+      appearance Appearance { material Material { diffuseColor 0.47 0.43 0.38 } }
+    }
+  ]
+  boundingObject Box { size 0.22 0.18 0.16 }
+}
+
+# ============================================================
+# 幸存者 — 水域中央 (半浸入水中)
+# ============================================================
+
+Solid {
+  translation 4 0 -0.05
+  name "survivor"
+  children [
+    Solid {
+      translation 0 0 0.4
+      name "survivor_body"
+      children [
+        Shape {
+          geometry Cylinder { radius 0.2 height 1.0 }
+          appearance Appearance { material Material { diffuseColor 1 0.5 0 } }
+        }
+      ]
+    }
+    Solid {
+      translation 0 0 1.1
+      name "survivor_head"
+      children [
+        Shape {
+          geometry Sphere { radius 0.15 }
+          appearance Appearance { material Material { diffuseColor 1 0.7 0.5 } }
+        }
+      ]
+    }
+  ]
+}
+
+# ============================================================
+# 机器人 — 北岸硬质路面出发，朝南行驶
+# ============================================================
+
+Robot {
+  translation -9 18 0.3
+  rotation 0 0 1 0
+  name "RescueRobot"
+  controller "robot_controller"
+  supervisor TRUE
+  physics Physics { density 150 }
+  boundingObject Transform {
+    translation 0 0 0.25
+    children [ Box { size 0.8 1.2 0.3 } ]
+  }
+  battery [ 360000 360000 5 ]
+
+  children [
+    Solid {
+      translation 0 0 0.25
+      name "body"
+      children [
+        Shape {
+          geometry Box { size 0.8 1.2 0.3 }
+          appearance Appearance { material Material { diffuseColor 0.2 0.6 0.2 } }
+        }
+      ]
+    }
+
+    Solid {
+      translation -0.5 0 0
+      name "left_pontoon"
+      physics Physics { density 300 }
+      children [
+        Transform {
+          rotation 1 0 0 1.57
+          children [
+            Shape {
+              geometry Cylinder { radius 0.12 height 1.1 }
+              appearance Appearance { material Material { diffuseColor 1 0.6 0 } }
+            }
+          ]
+        }
+      ]
+      boundingObject Transform {
+        rotation 1 0 0 1.57
+        children [ Cylinder { radius 0.12 height 1.1 } ]
+      }
+    }
+
+    Solid {
+      translation 0.5 0 0
+      name "right_pontoon"
+      physics Physics { density 300 }
+      children [
+        Transform {
+          rotation 1 0 0 1.57
+          children [
+            Shape {
+              geometry Cylinder { radius 0.12 height 1.1 }
+              appearance Appearance { material Material { diffuseColor 1 0.6 0 } }
+            }
+          ]
+        }
+      ]
+      boundingObject Transform {
+        rotation 1 0 0 1.57
+        children [ Cylinder { radius 0.12 height 1.1 } ]
+      }
+    }
+
+    # ═══ 臂摆履带 v3 — 臂=连杆(前轮+第一滚轮)，初始水平，微幅摆动 ═══
+    # 前臂: 连接驱动轮(r=12cm)+第一滚轮(r=15cm), 默认水平, 范围±20°
+    # 后臂: 连接驱动轮(r=12cm)+最后滚轮(r=15cm), 默认水平, 范围±20°
+    # 中间滚轮×4: 直接装在车身上, r=15cm密集排列
+    # 前后轮小→自然3cm仰角, 臂微摆→履带变形越障
+
+    # ── 左前臂 ──
+    HingeJoint {
+      jointParameters HingeJointParameters { anchor -0.3 -0.5 -0.15 axis 1 0 0 springConstant 80 dampingConstant 15 }
+      device RotationalMotor { name "arm_fl" maxTorque 5 minPosition -0.35 maxPosition 0.35 }
+      endPoint Solid {
+        translation -0.3 -0.5 -0.15
+        name "arm_body_fl"
+        children [
+          Transform { translation 0 -0.16 0.0 children [ Shape { geometry Box { size 0.05 0.32 0.04 } appearance Appearance { material Material { diffuseColor 0.35 0.35 0.4 } } } ] }
+          # 第一滚轮 r=15cm (距 pivot 20cm)
+          HingeJoint {
+            jointParameters HingeJointParameters { anchor 0 -0.15 -0.01 }
+            device RotationalMotor { name "drive_L1" maxTorque 80 }
+            endPoint Solid {
+              translation 0 -0.15 -0.01 rotation 0 1 0 1.57 name "r_L1"
+              children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ]
+              boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 }
+            }
+          }
+          # 前驱动轮 r=12cm (距 pivot 44cm)
+          HingeJoint {
+            jointParameters HingeJointParameters { anchor 0 -0.32 -0.01 }
+            device RotationalMotor { name "wheel_fl" maxTorque 80 }
+            endPoint Solid {
+              translation 0 -0.32 -0.01 rotation 0 1 0 1.57 name "wh_fl"
+              children [ Shape { geometry Cylinder { radius 0.12 height 0.08 } appearance Appearance { material Material { diffuseColor 0.1 0.1 0.1 } } } ]
+              boundingObject Cylinder { radius 0.12 height 0.08 } physics Physics { density 800 }
+            }
+          }
+        ]
+        boundingObject Transform { translation 0 -0.16 0.0 children [ Box { size 0.05 0.32 0.04 } ] }
+        physics Physics { density 400 }
+      }
+    }
+    # ── 右前臂 ──
+    HingeJoint {
+      jointParameters HingeJointParameters { anchor 0.3 -0.5 -0.15 axis 1 0 0 springConstant 80 dampingConstant 15 }
+      device RotationalMotor { name "arm_fr" maxTorque 5 minPosition -0.35 maxPosition 0.35 }
+      endPoint Solid {
+        translation 0.3 -0.5 -0.15
+        name "arm_body_fr"
+        children [
+          Transform { translation 0 -0.16 0.0 children [ Shape { geometry Box { size 0.05 0.32 0.04 } appearance Appearance { material Material { diffuseColor 0.35 0.35 0.4 } } } ] }
+          HingeJoint {
+            jointParameters HingeJointParameters { anchor 0 -0.15 -0.01 }
+            device RotationalMotor { name "drive_R1" maxTorque 80 }
+            endPoint Solid {
+              translation 0 -0.15 -0.01 rotation 0 1 0 1.57 name "r_R1"
+              children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ]
+              boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 }
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters { anchor 0 -0.32 -0.01 }
+            device RotationalMotor { name "wheel_fr" maxTorque 80 }
+            endPoint Solid {
+              translation 0 -0.32 -0.01 rotation 0 1 0 1.57 name "wh_fr"
+              children [ Shape { geometry Cylinder { radius 0.12 height 0.08 } appearance Appearance { material Material { diffuseColor 0.1 0.1 0.1 } } } ]
+              boundingObject Cylinder { radius 0.12 height 0.08 } physics Physics { density 800 }
+            }
+          }
+        ]
+        boundingObject Transform { translation 0 -0.16 0.0 children [ Box { size 0.05 0.32 0.04 } ] }
+        physics Physics { density 400 }
+      }
+    }
+    # ── 左后臂 ──
+    HingeJoint {
+      jointParameters HingeJointParameters { anchor -0.3 0.5 -0.15 axis 1 0 0 springConstant 80 dampingConstant 15 }
+      device RotationalMotor { name "arm_rl" maxTorque 5 minPosition -0.35 maxPosition 0.35 }
+      endPoint Solid {
+        translation -0.3 0.5 -0.15
+        name "arm_body_rl"
+        children [
+          Transform { translation 0 0.16 0.0 children [ Shape { geometry Box { size 0.05 0.32 0.04 } appearance Appearance { material Material { diffuseColor 0.35 0.35 0.4 } } } ] }
+          HingeJoint {
+            jointParameters HingeJointParameters { anchor 0 0.15 -0.01 }
+            device RotationalMotor { name "drive_L6" maxTorque 80 }
+            endPoint Solid {
+              translation 0 0.15 -0.01 rotation 0 1 0 1.57 name "r_L6"
+              children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ]
+              boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 }
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters { anchor 0 0.32 -0.01 }
+            device RotationalMotor { name "wheel_rl" maxTorque 80 }
+            endPoint Solid {
+              translation 0 0.32 -0.01 rotation 0 1 0 1.57 name "wh_rl"
+              children [ Shape { geometry Cylinder { radius 0.12 height 0.08 } appearance Appearance { material Material { diffuseColor 0.1 0.1 0.1 } } } ]
+              boundingObject Cylinder { radius 0.12 height 0.08 } physics Physics { density 800 }
+            }
+          }
+        ]
+        boundingObject Transform { translation 0 0.16 0.0 children [ Box { size 0.05 0.32 0.04 } ] }
+        physics Physics { density 400 }
+      }
+    }
+    # ── 右后臂 ──
+    HingeJoint {
+      jointParameters HingeJointParameters { anchor 0.3 0.5 -0.15 axis 1 0 0 springConstant 80 dampingConstant 15 }
+      device RotationalMotor { name "arm_rr" maxTorque 5 minPosition -0.35 maxPosition 0.35 }
+      endPoint Solid {
+        translation 0.3 0.5 -0.15
+        name "arm_body_rr"
+        children [
+          Transform { translation 0 0.16 0.0 children [ Shape { geometry Box { size 0.05 0.32 0.04 } appearance Appearance { material Material { diffuseColor 0.35 0.35 0.4 } } } ] }
+          HingeJoint {
+            jointParameters HingeJointParameters { anchor 0 0.15 -0.01 }
+            device RotationalMotor { name "drive_R6" maxTorque 80 }
+            endPoint Solid {
+              translation 0 0.15 -0.01 rotation 0 1 0 1.57 name "r_R6"
+              children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ]
+              boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 }
+            }
+          }
+          HingeJoint {
+            jointParameters HingeJointParameters { anchor 0 0.32 -0.01 }
+            device RotationalMotor { name "wheel_rr" maxTorque 80 }
+            endPoint Solid {
+              translation 0 0.32 -0.01 rotation 0 1 0 1.57 name "wh_rr"
+              children [ Shape { geometry Cylinder { radius 0.12 height 0.08 } appearance Appearance { material Material { diffuseColor 0.1 0.1 0.1 } } } ]
+              boundingObject Cylinder { radius 0.12 height 0.08 } physics Physics { density 800 }
+            }
+          }
+        ]
+        boundingObject Transform { translation 0 0.16 0.0 children [ Box { size 0.05 0.32 0.04 } ] }
+        physics Physics { density 400 }
+      }
+    }
+
+    # ── 车身中间滚轮 r=15cm (4个/侧, 桥接前后臂滚轮) ──
+    HingeJoint { jointParameters HingeJointParameters { anchor -0.3 -0.42 -0.16 } device RotationalMotor { name "drive_L2" maxTorque 80 } endPoint Solid { translation -0.3 -0.42 -0.16 rotation 0 1 0 1.57 name "r_L2" children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ] boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 } } }
+    HingeJoint { jointParameters HingeJointParameters { anchor -0.3 -0.18 -0.16 } device RotationalMotor { name "drive_L3" maxTorque 80 } endPoint Solid { translation -0.3 -0.18 -0.16 rotation 0 1 0 1.57 name "r_L3" children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ] boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 } } }
+    HingeJoint { jointParameters HingeJointParameters { anchor -0.3  0.06 -0.16 } device RotationalMotor { name "drive_L4" maxTorque 80 } endPoint Solid { translation -0.3  0.06 -0.16 rotation 0 1 0 1.57 name "r_L4" children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ] boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 } } }
+    HingeJoint { jointParameters HingeJointParameters { anchor -0.3  0.30 -0.16 } device RotationalMotor { name "drive_L5" maxTorque 80 } endPoint Solid { translation -0.3  0.30 -0.16 rotation 0 1 0 1.57 name "r_L5" children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ] boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 } } }
+    HingeJoint { jointParameters HingeJointParameters { anchor  0.3 -0.42 -0.16 } device RotationalMotor { name "drive_R2" maxTorque 80 } endPoint Solid { translation  0.3 -0.42 -0.16 rotation 0 1 0 1.57 name "r_R2" children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ] boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 } } }
+    HingeJoint { jointParameters HingeJointParameters { anchor  0.3 -0.18 -0.16 } device RotationalMotor { name "drive_R3" maxTorque 80 } endPoint Solid { translation  0.3 -0.18 -0.16 rotation 0 1 0 1.57 name "r_R3" children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ] boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 } } }
+    HingeJoint { jointParameters HingeJointParameters { anchor  0.3  0.06 -0.16 } device RotationalMotor { name "drive_R4" maxTorque 80 } endPoint Solid { translation  0.3  0.06 -0.16 rotation 0 1 0 1.57 name "r_R4" children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ] boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 } } }
+    HingeJoint { jointParameters HingeJointParameters { anchor  0.3  0.30 -0.16 } device RotationalMotor { name "drive_R5" maxTorque 80 } endPoint Solid { translation  0.3  0.30 -0.16 rotation 0 1 0 1.57 name "r_R5" children [ Shape { geometry Cylinder { radius 0.15 height 0.08 } appearance Appearance { material Material { diffuseColor 0.15 0.15 0.15 } } } ] boundingObject Cylinder { radius 0.15 height 0.08 } physics Physics { density 500 } } }
+
+    # ── RGB相机云台 (车前, 可左右转动 ±45°) ──
+    Camera {
+      translation 0 -0.65 0.6
+      rotation 0 0 1 -1.57
+      name "rgb_camera"
+      width 640 height 480 fieldOfView 1.2
+    }
+
+    Camera {
+      translation 0 -0.62 0.65
+      rotation 0 0 1 -1.57
+      name "ir_camera"
+      width 640 height 480 fieldOfView 1.2
+    }
+
+    GPS {
+      translation 0 0 0.3
+      name "gps"
+    }
+
+    DistanceSensor {
+      translation 0 0.5 0.3
+      rotation 0 0 1 1.57
+      name "depth_sensor"
+      type "laser"
+      numberOfRays 1
+      aperture 0.1
+    }
+
+    Accelerometer {
+      name "imu_accel"
+    }
+
+    Gyro {
+      name "imu_gyro"
+    }
+
+    LED {
+      translation 0 0 0.55
+      name "beacon_light"
+    }
+  ]
+}
