@@ -1,0 +1,2879 @@
+{
+  "title": "Exp3: Rescue-First Energy Strategy",
+  "hypothesis": "LSTM+MDP+LLM: adaptive speed + beacon reserve maximizes rescue rate",
+  "source": "[calculated] physics model v2",
+  "design": "60 random scenarios x 3 strategies",
+  "reference": "Energy-Aware HRL (MDPI Drones 2024)",
+  "timestamp": "2026-05-28 03:58:21",
+  "summary": {
+    "fixed_10": {
+      "label": "Fixed 10%",
+      "arrived": 47,
+      "beacon_here": 3,
+      "rescue_rate": 0.783,
+      "avg_battery_left_pct": 0.2841,
+      "avg_power_w": 716.0
+    },
+    "fixed_30": {
+      "label": "Fixed 30%",
+      "arrived": 32,
+      "beacon_here": 22,
+      "rescue_rate": 0.533,
+      "avg_battery_left_pct": 0.3623,
+      "avg_power_w": 716.0
+    },
+    "ours": {
+      "label": "Ours (MDP+LSTM+LLM)",
+      "arrived": 48,
+      "beacon_here": 12,
+      "rescue_rate": 0.8,
+      "avg_battery_left_pct": 0.2769,
+      "avg_power_w": 716.0
+    }
+  },
+  "results": [
+    {
+      "scenario": 0,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.256,
+      "distance_m": 287.0,
+      "flow_ms": 0.26,
+      "load_kg": 12.0,
+      "in_water": true,
+      "water_fraction": 0.22,
+      "avg_terrain_factor": 1.56,
+      "power_w": 1098.0,
+      "speed_ms": 2.21,
+      "energy_needed_pct": 0.4199,
+      "usable_pct": 0.226,
+      "safety_margin_pct": -0.1938,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.43464846527517786,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.2560338558582604,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.2560338558582604,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 1,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.386,
+      "distance_m": 45.0,
+      "flow_ms": 0.25,
+      "load_kg": 18.8,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.29,
+      "power_w": 254.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0134,
+      "usable_pct": 0.3559,
+      "safety_margin_pct": 0.3425,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.37200604198692616,
+          "energy_used_pct": 0.013911540299034752,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.37200604198692616,
+          "energy_used_pct": 0.013911540299034752,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.3710338719883929,
+          "energy_used_pct": 0.01488371029756802,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 2,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.083,
+      "distance_m": 36.0,
+      "flow_ms": 0.18,
+      "load_kg": 8.0,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.17,
+      "power_w": 212.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0089,
+      "usable_pct": 0.0533,
+      "safety_margin_pct": 0.0445,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "BEACON_HERE",
+        "fixed_30": "BEACON_HERE",
+        "ours": "FULL_SPEED"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.08332116345326718,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.08332116345326718,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.07412421485207689,
+          "energy_used_pct": 0.00919694860119029,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 3,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.484,
+      "distance_m": 214.0,
+      "flow_ms": 0.16,
+      "load_kg": 0.3,
+      "in_water": true,
+      "water_fraction": 0.43,
+      "avg_terrain_factor": 1.41,
+      "power_w": 1658.0,
+      "speed_ms": 1.94,
+      "energy_needed_pct": 0.5281,
+      "usable_pct": 0.4542,
+      "safety_margin_pct": -0.0739,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.5480301321962386,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.5480301321962386,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.4841719911660707,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 4,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.402,
+      "distance_m": 149.0,
+      "flow_ms": 0.04,
+      "load_kg": 9.9,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.1,
+      "power_w": 204.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.034,
+      "usable_pct": 0.3716,
+      "safety_margin_pct": 0.3376,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.3661119576001069,
+          "energy_used_pct": 0.03547756486060687,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.3661119576001069,
+          "energy_used_pct": 0.03547756486060687,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.3647628475838751,
+          "energy_used_pct": 0.03682667487683869,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 5,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.435,
+      "distance_m": 145.0,
+      "flow_ms": 0.07,
+      "load_kg": 11.4,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.28,
+      "power_w": 237.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0387,
+      "usable_pct": 0.405,
+      "safety_margin_pct": 0.3663,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.39470510630188715,
+          "energy_used_pct": 0.04031475654740956,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.39470510630188715,
+          "energy_used_pct": 0.04031475654740956,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.39299858580139263,
+          "energy_used_pct": 0.04202127704790409,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 6,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.361,
+      "distance_m": 279.0,
+      "flow_ms": 0.03,
+      "load_kg": 3.9,
+      "in_water": true,
+      "water_fraction": 0.33,
+      "avg_terrain_factor": 1.46,
+      "power_w": 1394.0,
+      "speed_ms": 2.07,
+      "energy_needed_pct": 0.5265,
+      "usable_pct": 0.331,
+      "safety_margin_pct": -0.1955,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.5488985709619991,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.5488985709619991,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.36101299004121007,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 7,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.219,
+      "distance_m": 75.0,
+      "flow_ms": 0.01,
+      "load_kg": 8.5,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.2,
+      "power_w": 218.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0181,
+      "usable_pct": 0.1892,
+      "safety_margin_pct": 0.1712,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.20037511689379184,
+          "energy_used_pct": 0.018873430787126885,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.21924854768091873,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.19975591431844447,
+          "energy_used_pct": 0.019492633362474265,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 8,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.414,
+      "distance_m": 243.0,
+      "flow_ms": 0.21,
+      "load_kg": 18.5,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.36,
+      "power_w": 265.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0749,
+      "usable_pct": 0.3843,
+      "safety_margin_pct": 0.3094,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.3366204046295104,
+          "energy_used_pct": 0.07771031316235519,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.3366204046295104,
+          "energy_used_pct": 0.07771031316235519,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.33169530814092124,
+          "energy_used_pct": 0.08263540965094429,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 9,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.226,
+      "distance_m": 118.0,
+      "flow_ms": 0.26,
+      "load_kg": 12.8,
+      "in_water": true,
+      "water_fraction": 0.2,
+      "avg_terrain_factor": 1.46,
+      "power_w": 954.0,
+      "speed_ms": 2.24,
+      "energy_needed_pct": 0.1478,
+      "usable_pct": 0.1962,
+      "safety_margin_pct": 0.0484,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "FULL_SPEED"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.07313129158241383,
+          "energy_used_pct": 0.15303039962394743,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.22616169120636126,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.07313129158241383,
+          "energy_used_pct": 0.15303039962394743,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 10,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.438,
+      "distance_m": 182.0,
+      "flow_ms": 0.27,
+      "load_kg": 9.9,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.38,
+      "power_w": 250.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0533,
+      "usable_pct": 0.4076,
+      "safety_margin_pct": 0.3542,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.38234202548400015,
+          "energy_used_pct": 0.05522694736594167,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.38234202548400015,
+          "energy_used_pct": 0.05522694736594167,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.37832810790486293,
+          "energy_used_pct": 0.0592408649450789,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 11,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.228,
+      "distance_m": 167.0,
+      "flow_ms": 0.32,
+      "load_kg": 5.0,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.17,
+      "power_w": 206.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0409,
+      "usable_pct": 0.1977,
+      "safety_margin_pct": 0.1569,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.18546018406215,
+          "energy_used_pct": 0.04228712704372354,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.22774731110587354,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.1820493531387688,
+          "energy_used_pct": 0.04569795796710475,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 12,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.373,
+      "distance_m": 110.0,
+      "flow_ms": 0.04,
+      "load_kg": 9.1,
+      "in_water": true,
+      "water_fraction": 0.2,
+      "avg_terrain_factor": 1.5,
+      "power_w": 972.0,
+      "speed_ms": 2.24,
+      "energy_needed_pct": 0.1335,
+      "usable_pct": 0.3434,
+      "safety_margin_pct": 0.2099,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.23426777862270132,
+          "energy_used_pct": 0.13917862400018155,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.23426777862270132,
+          "energy_used_pct": 0.13917862400018155,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.22900489019474285,
+          "energy_used_pct": 0.14444151242814002,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 13,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.506,
+      "distance_m": 103.0,
+      "flow_ms": 0.23,
+      "load_kg": 0.0,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.32,
+      "power_w": 221.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0266,
+      "usable_pct": 0.4762,
+      "safety_margin_pct": 0.4496,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.47859230561346944,
+          "energy_used_pct": 0.027617061913034917,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.47859230561346944,
+          "energy_used_pct": 0.027617061913034917,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.4767779549859783,
+          "energy_used_pct": 0.029431412540526076,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 14,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.331,
+      "distance_m": 161.0,
+      "flow_ms": 0.24,
+      "load_kg": 5.4,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.3,
+      "power_w": 229.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0429,
+      "usable_pct": 0.301,
+      "safety_margin_pct": 0.2581,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.28651318890620936,
+          "energy_used_pct": 0.04450883820024835,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.28651318890620936,
+          "energy_used_pct": 0.04450883820024835,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.2834773107079768,
+          "energy_used_pct": 0.047544716398480916,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 15,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.251,
+      "distance_m": 292.0,
+      "flow_ms": 0.34,
+      "load_kg": 5.0,
+      "in_water": true,
+      "water_fraction": 0.11,
+      "avg_terrain_factor": 1.2,
+      "power_w": 523.0,
+      "speed_ms": 2.36,
+      "energy_needed_pct": 0.1943,
+      "usable_pct": 0.2209,
+      "safety_margin_pct": 0.0266,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "FULL_SPEED"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.05012349172699951,
+          "energy_used_pct": 0.2007824213912687,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.2509059131182682,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.05012349172699951,
+          "energy_used_pct": 0.2007824213912687,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 16,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.316,
+      "distance_m": 44.0,
+      "flow_ms": 0.1,
+      "load_kg": 18.2,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.29,
+      "power_w": 252.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0126,
+      "usable_pct": 0.2863,
+      "safety_margin_pct": 0.2737,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.3031906192444865,
+          "energy_used_pct": 0.013068521673078416,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.3031906192444865,
+          "energy_used_pct": 0.013068521673078416,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.3025903427009197,
+          "energy_used_pct": 0.01366879821664521,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 17,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.194,
+      "distance_m": 211.0,
+      "flow_ms": 0.27,
+      "load_kg": 4.8,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.25,
+      "power_w": 219.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0543,
+      "usable_pct": 0.1638,
+      "safety_margin_pct": 0.1094,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.1374896719939621,
+          "energy_used_pct": 0.05627630561644312,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.1937659776104052,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.13342968563558272,
+          "energy_used_pct": 0.06033629197482247,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 18,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.332,
+      "distance_m": 54.0,
+      "flow_ms": 0.29,
+      "load_kg": 6.4,
+      "in_water": true,
+      "water_fraction": 0.2,
+      "avg_terrain_factor": 1.5,
+      "power_w": 967.0,
+      "speed_ms": 2.24,
+      "energy_needed_pct": 0.0698,
+      "usable_pct": 0.3018,
+      "safety_margin_pct": 0.2321,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.25968218110969876,
+          "energy_used_pct": 0.07213192040543774,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.25968218110969876,
+          "energy_used_pct": 0.07213192040543774,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.25375807161144837,
+          "energy_used_pct": 0.07805602990368816,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 19,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.414,
+      "distance_m": 249.0,
+      "flow_ms": 0.12,
+      "load_kg": 1.9,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.26,
+      "power_w": 215.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.061,
+      "usable_pct": 0.3842,
+      "safety_margin_pct": 0.3233,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.35084256600090413,
+          "energy_used_pct": 0.06339771424496428,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.35084256600090413,
+          "energy_used_pct": 0.06339771424496428,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.3477007424935508,
+          "energy_used_pct": 0.06653953775231758,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 20,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.133,
+      "distance_m": 280.0,
+      "flow_ms": 0.31,
+      "load_kg": 5.2,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.28,
+      "power_w": 225.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0746,
+      "usable_pct": 0.1033,
+      "safety_margin_pct": 0.0287,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "FULL_SPEED"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.05616540316299254,
+          "energy_used_pct": 0.07716715182008432,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.13333255498307686,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.05616540316299254,
+          "energy_used_pct": 0.07716715182008432,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 21,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.239,
+      "distance_m": 124.0,
+      "flow_ms": 0.25,
+      "load_kg": 17.9,
+      "in_water": true,
+      "water_fraction": 0.2,
+      "avg_terrain_factor": 1.5,
+      "power_w": 990.0,
+      "speed_ms": 2.24,
+      "energy_needed_pct": 0.1618,
+      "usable_pct": 0.2093,
+      "safety_margin_pct": 0.0476,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "FULL_SPEED"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.07186802497640163,
+          "energy_used_pct": 0.1674759768164877,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.23934400179288934,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.07186802497640163,
+          "energy_used_pct": 0.1674759768164877,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 22,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.48,
+      "distance_m": 283.0,
+      "flow_ms": 0.27,
+      "load_kg": 13.4,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.08,
+      "power_w": 208.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0692,
+      "usable_pct": 0.4499,
+      "safety_margin_pct": 0.3807,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.40828288095073584,
+          "energy_used_pct": 0.07165348996999518,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.40828288095073584,
+          "energy_used_pct": 0.07165348996999518,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.40301578587199127,
+          "energy_used_pct": 0.07692058504873975,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 23,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.386,
+      "distance_m": 91.0,
+      "flow_ms": 0.25,
+      "load_kg": 4.7,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.42,
+      "power_w": 247.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0262,
+      "usable_pct": 0.3564,
+      "safety_margin_pct": 0.3302,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.3592771823673071,
+          "energy_used_pct": 0.027144609598915168,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.3592771823673071,
+          "energy_used_pct": 0.027144609598915168,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.3573953820804551,
+          "energy_used_pct": 0.02902640988576716,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 24,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.419,
+      "distance_m": 113.0,
+      "flow_ms": 0.19,
+      "load_kg": 10.2,
+      "in_water": true,
+      "water_fraction": 0.8,
+      "avg_terrain_factor": 1.92,
+      "power_w": 3947.0,
+      "speed_ms": 1.46,
+      "energy_needed_pct": 0.909,
+      "usable_pct": 0.3888,
+      "safety_margin_pct": -0.5201,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.9399608563981682,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.9399608563981682,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.4188417643985008,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 25,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.265,
+      "distance_m": 271.0,
+      "flow_ms": 0.22,
+      "load_kg": 15.9,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.11,
+      "power_w": 218.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0686,
+      "usable_pct": 0.2348,
+      "safety_margin_pct": 0.1661,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.19359338540615012,
+          "energy_used_pct": 0.0711625451872273,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.26475593059337743,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.1889838863303691,
+          "energy_used_pct": 0.07577204426300833,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 26,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.495,
+      "distance_m": 232.0,
+      "flow_ms": 0.33,
+      "load_kg": 6.6,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.23,
+      "power_w": 219.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0605,
+      "usable_pct": 0.4652,
+      "safety_margin_pct": 0.4048,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.43273323644443645,
+          "energy_used_pct": 0.06250895402070526,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.43273323644443645,
+          "energy_used_pct": 0.06250895402070526,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.42752156550177317,
+          "energy_used_pct": 0.06772062496336857,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 27,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.229,
+      "distance_m": 76.0,
+      "flow_ms": 0.19,
+      "load_kg": 18.7,
+      "in_water": true,
+      "water_fraction": 0.2,
+      "avg_terrain_factor": 1.46,
+      "power_w": 966.0,
+      "speed_ms": 2.24,
+      "energy_needed_pct": 0.0949,
+      "usable_pct": 0.199,
+      "safety_margin_pct": 0.1041,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.13051532331832222,
+          "energy_used_pct": 0.09843801910512828,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.2289533424234505,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.12419218097703011,
+          "energy_used_pct": 0.10476116144642039,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 28,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.369,
+      "distance_m": 297.0,
+      "flow_ms": 0.05,
+      "load_kg": 10.4,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.33,
+      "power_w": 244.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0814,
+      "usable_pct": 0.3391,
+      "safety_margin_pct": 0.2576,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.2841970565821983,
+          "energy_used_pct": 0.08485633996641154,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.2841970565821983,
+          "energy_used_pct": 0.08485633996641154,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.2808940817333162,
+          "energy_used_pct": 0.08815931481529363,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 29,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.46,
+      "distance_m": 249.0,
+      "flow_ms": 0.3,
+      "load_kg": 18.3,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.26,
+      "power_w": 247.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0727,
+      "usable_pct": 0.4304,
+      "safety_margin_pct": 0.3577,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.38521492137845054,
+          "energy_used_pct": 0.07518482169645091,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.38521492137845054,
+          "energy_used_pct": 0.07518482169645091,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.3793304547881431,
+          "energy_used_pct": 0.08106928828675834,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 30,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.239,
+      "distance_m": 131.0,
+      "flow_ms": 0.03,
+      "load_kg": 11.6,
+      "in_water": true,
+      "water_fraction": 0.6,
+      "avg_terrain_factor": 1.71,
+      "power_w": 2716.0,
+      "speed_ms": 1.72,
+      "energy_needed_pct": 0.582,
+      "usable_pct": 0.2089,
+      "safety_margin_pct": -0.3731,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.6065180049948814,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.23885772372022185,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.23885772372022185,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 31,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.358,
+      "distance_m": 38.0,
+      "flow_ms": 0.01,
+      "load_kg": 16.5,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.35,
+      "power_w": 259.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.011,
+      "usable_pct": 0.3277,
+      "safety_margin_pct": 0.3167,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.34618257870039626,
+          "energy_used_pct": 0.011509053767038833,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.34618257870039626,
+          "energy_used_pct": 0.011509053767038833,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.3457928434166868,
+          "energy_used_pct": 0.011898789050748256,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 32,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.208,
+      "distance_m": 291.0,
+      "flow_ms": 0.16,
+      "load_kg": 16.8,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.2,
+      "power_w": 235.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0783,
+      "usable_pct": 0.1776,
+      "safety_margin_pct": 0.0993,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "FULL_SPEED"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.12628584855186836,
+          "energy_used_pct": 0.0813393218834103,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.20762517043527867,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.12628584855186836,
+          "energy_used_pct": 0.0813393218834103,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 33,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.267,
+      "distance_m": 147.0,
+      "flow_ms": 0.26,
+      "load_kg": 5.0,
+      "in_water": true,
+      "water_fraction": 0.6,
+      "avg_terrain_factor": 1.65,
+      "power_w": 2609.0,
+      "speed_ms": 1.72,
+      "energy_needed_pct": 0.6702,
+      "usable_pct": 0.2374,
+      "safety_margin_pct": -0.4328,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.6919660986009505,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.26744582367905345,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.26744582367905345,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 34,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.107,
+      "distance_m": 277.0,
+      "flow_ms": 0.15,
+      "load_kg": 4.8,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.38,
+      "power_w": 241.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0767,
+      "usable_pct": 0.0774,
+      "safety_margin_pct": 0.0007,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "GO_AND_BEACON"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.02767993846513557,
+          "energy_used_pct": 0.07967105142383293,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.1073509898889685,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.030246549658825048,
+          "energy_used_pct": 0.07710444023014346,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 35,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.102,
+      "distance_m": 183.0,
+      "flow_ms": 0.06,
+      "load_kg": 2.4,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.4,
+      "power_w": 239.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0492,
+      "usable_pct": 0.0724,
+      "safety_margin_pct": 0.0233,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "FULL_SPEED"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.0512044814425673,
+          "energy_used_pct": 0.05122209857250763,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.10242658001507493,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.0512044814425673,
+          "energy_used_pct": 0.05122209857250763,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 36,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.311,
+      "distance_m": 158.0,
+      "flow_ms": 0.06,
+      "load_kg": 8.7,
+      "in_water": true,
+      "water_fraction": 0.8,
+      "avg_terrain_factor": 1.8,
+      "power_w": 3698.0,
+      "speed_ms": 1.46,
+      "energy_needed_pct": 1.1342,
+      "usable_pct": 0.2811,
+      "safety_margin_pct": -0.8531,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 1.1802221266435986,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 1.1802221266435986,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.31105946130491124,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 37,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.497,
+      "distance_m": 100.0,
+      "flow_ms": 0.01,
+      "load_kg": 18.7,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.3,
+      "power_w": 255.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0285,
+      "usable_pct": 0.4667,
+      "safety_margin_pct": 0.4382,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.4670062163903648,
+          "energy_used_pct": 0.029733565639717574,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.4670062163903648,
+          "energy_used_pct": 0.029733565639717574,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.4660311911793143,
+          "energy_used_pct": 0.030708590850768113,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 38,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.524,
+      "distance_m": 285.0,
+      "flow_ms": 0.3,
+      "load_kg": 12.7,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.11,
+      "power_w": 212.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0713,
+      "usable_pct": 0.4936,
+      "safety_margin_pct": 0.4223,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.44983748295381054,
+          "energy_used_pct": 0.07379157118974536,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.44983748295381054,
+          "energy_used_pct": 0.07379157118974536,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.4440615121672526,
+          "energy_used_pct": 0.0795675419763033,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 39,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.466,
+      "distance_m": 206.0,
+      "flow_ms": 0.07,
+      "load_kg": 5.5,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.27,
+      "power_w": 223.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0518,
+      "usable_pct": 0.4356,
+      "safety_margin_pct": 0.3838,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.41165626285377177,
+          "energy_used_pct": 0.053944353718724275,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.41165626285377177,
+          "energy_used_pct": 0.053944353718724275,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.40937623147694324,
+          "energy_used_pct": 0.05622438509555279,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 40,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.388,
+      "distance_m": 134.0,
+      "flow_ms": 0.24,
+      "load_kg": 6.8,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.31,
+      "power_w": 233.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0365,
+      "usable_pct": 0.3582,
+      "safety_margin_pct": 0.3217,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.35039911674483537,
+          "energy_used_pct": 0.03779052188411345,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.35039911674483537,
+          "energy_used_pct": 0.03779052188411345,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.34784453218583605,
+          "energy_used_pct": 0.040345106443112795,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 41,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.407,
+      "distance_m": 200.0,
+      "flow_ms": 0.31,
+      "load_kg": 14.7,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.37,
+      "power_w": 258.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0611,
+      "usable_pct": 0.3775,
+      "safety_margin_pct": 0.3164,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.3442450902285077,
+          "energy_used_pct": 0.06322137749264316,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.3442450902285077,
+          "energy_used_pct": 0.06322137749264316,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.3392582613859843,
+          "energy_used_pct": 0.06820820633516655,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 42,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.347,
+      "distance_m": 185.0,
+      "flow_ms": 0.26,
+      "load_kg": 2.6,
+      "in_water": true,
+      "water_fraction": 0.17,
+      "avg_terrain_factor": 1.42,
+      "power_w": 796.0,
+      "speed_ms": 2.28,
+      "energy_needed_pct": 0.1902,
+      "usable_pct": 0.3172,
+      "safety_margin_pct": 0.127,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.1502727493833446,
+          "energy_used_pct": 0.19693178397913588,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.1502727493833446,
+          "energy_used_pct": 0.19693178397913588,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.135617711735428,
+          "energy_used_pct": 0.21158682162705247,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 43,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.4,
+      "distance_m": 230.0,
+      "flow_ms": 0.08,
+      "load_kg": 7.6,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.07,
+      "power_w": 195.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0505,
+      "usable_pct": 0.3695,
+      "safety_margin_pct": 0.319,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.3469287257919269,
+          "energy_used_pct": 0.05259832076118865,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.3469287257919269,
+          "energy_used_pct": 0.05259832076118865,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.3446214046274923,
+          "energy_used_pct": 0.054905641925623264,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 44,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.085,
+      "distance_m": 274.0,
+      "flow_ms": 0.03,
+      "load_kg": 6.4,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.27,
+      "power_w": 226.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0693,
+      "usable_pct": 0.0551,
+      "safety_margin_pct": -0.0142,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "BEACON_HERE",
+        "fixed_30": "BEACON_HERE",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.08509369619574023,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.08509369619574023,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.08509369619574023,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 45,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.434,
+      "distance_m": 244.0,
+      "flow_ms": 0.28,
+      "load_kg": 1.8,
+      "in_water": true,
+      "water_fraction": 0.5,
+      "avg_terrain_factor": 1.61,
+      "power_w": 2164.0,
+      "speed_ms": 1.85,
+      "energy_needed_pct": 0.856,
+      "usable_pct": 0.4036,
+      "safety_margin_pct": -0.4524,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.8838834838431746,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.8838834838431746,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.43361602883570965,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 46,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.535,
+      "distance_m": 216.0,
+      "flow_ms": 0.29,
+      "load_kg": 17.3,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.43,
+      "power_w": 274.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0698,
+      "usable_pct": 0.5053,
+      "safety_margin_pct": 0.4355,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.4630518261054335,
+          "energy_used_pct": 0.07221458756240992,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.4630518261054335,
+          "energy_used_pct": 0.07221458756240992,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.45752719998787483,
+          "energy_used_pct": 0.07773921367996864,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 47,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.149,
+      "distance_m": 169.0,
+      "flow_ms": 0.08,
+      "load_kg": 11.6,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.17,
+      "power_w": 219.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0417,
+      "usable_pct": 0.1189,
+      "safety_margin_pct": 0.0772,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "FULL_SPEED"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.10543347005199483,
+          "energy_used_pct": 0.043470796143257155,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.148904266195252,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.10543347005199483,
+          "energy_used_pct": 0.043470796143257155,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 48,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.543,
+      "distance_m": 233.0,
+      "flow_ms": 0.13,
+      "load_kg": 1.7,
+      "in_water": true,
+      "water_fraction": 0.43,
+      "avg_terrain_factor": 1.69,
+      "power_w": 1979.0,
+      "speed_ms": 1.94,
+      "energy_needed_pct": 0.6837,
+      "usable_pct": 0.5134,
+      "safety_margin_pct": -0.1703,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.7102139766882871,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 0.7102139766882871,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.5434204999967494,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 49,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.199,
+      "distance_m": 139.0,
+      "flow_ms": 0.2,
+      "load_kg": 14.8,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.27,
+      "power_w": 242.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0391,
+      "usable_pct": 0.1692,
+      "safety_margin_pct": 0.1301,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.1586459538800646,
+          "energy_used_pct": 0.04058466784031059,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.1992306217203752,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.15615089579999003,
+          "energy_used_pct": 0.043079725920385184,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 50,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.354,
+      "distance_m": 290.0,
+      "flow_ms": 0.13,
+      "load_kg": 5.7,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.38,
+      "power_w": 243.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0804,
+      "usable_pct": 0.3242,
+      "safety_margin_pct": 0.2438,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.2705855792162781,
+          "energy_used_pct": 0.08359774037938696,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.2705855792162781,
+          "energy_used_pct": 0.08359774037938696,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.2663280790249102,
+          "energy_used_pct": 0.08785524057075489,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 51,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.547,
+      "distance_m": 50.0,
+      "flow_ms": 0.19,
+      "load_kg": 19.4,
+      "in_water": true,
+      "water_fraction": 0.2,
+      "avg_terrain_factor": 1.21,
+      "power_w": 808.0,
+      "speed_ms": 2.24,
+      "energy_needed_pct": 0.0523,
+      "usable_pct": 0.5167,
+      "safety_margin_pct": 0.4644,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.49242552033808806,
+          "energy_used_pct": 0.054267933837983125,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.49242552033808806,
+          "energy_used_pct": 0.054267933837983125,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.48894953582730977,
+          "energy_used_pct": 0.057743918348761414,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 52,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.408,
+      "distance_m": 134.0,
+      "flow_ms": 0.26,
+      "load_kg": 18.3,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.49,
+      "power_w": 286.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0448,
+      "usable_pct": 0.3776,
+      "safety_margin_pct": 0.3327,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.36109601598017593,
+          "energy_used_pct": 0.046458760275817086,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.36109601598017593,
+          "energy_used_pct": 0.046458760275817086,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.357809439491762,
+          "energy_used_pct": 0.04974533676423096,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 53,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.21,
+      "distance_m": 81.0,
+      "flow_ms": 0.16,
+      "load_kg": 7.1,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.2,
+      "power_w": 215.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.02,
+      "usable_pct": 0.1804,
+      "safety_margin_pct": 0.1604,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.18963164389878007,
+          "energy_used_pct": 0.02073751210235231,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.21036915600113237,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.18847787982627093,
+          "energy_used_pct": 0.02189127617486144,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 54,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.095,
+      "distance_m": 106.0,
+      "flow_ms": 0.14,
+      "load_kg": 12.1,
+      "in_water": true,
+      "water_fraction": 0.4,
+      "avg_terrain_factor": 1.56,
+      "power_w": 1748.0,
+      "speed_ms": 1.98,
+      "energy_needed_pct": 0.2686,
+      "usable_pct": 0.0652,
+      "safety_margin_pct": -0.2034,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "BEACON_HERE",
+        "fixed_30": "BEACON_HERE",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.09518849702153573,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.09518849702153573,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.09518849702153573,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 55,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.368,
+      "distance_m": 143.0,
+      "flow_ms": 0.33,
+      "load_kg": 17.3,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.37,
+      "power_w": 264.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0449,
+      "usable_pct": 0.3383,
+      "safety_margin_pct": 0.2934,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.32190355405546006,
+          "energy_used_pct": 0.04640158803436123,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.32190355405546006,
+          "energy_used_pct": 0.04640158803436123,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.31809134066983713,
+          "energy_used_pct": 0.05021380141998415,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 56,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.461,
+      "distance_m": 297.0,
+      "flow_ms": 0.05,
+      "load_kg": 11.9,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.14,
+      "power_w": 215.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.0714,
+      "usable_pct": 0.431,
+      "safety_margin_pct": 0.3595,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.38651412528233,
+          "energy_used_pct": 0.07444594018513154,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.38651412528233,
+          "energy_used_pct": 0.07444594018513154,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.3835780049214723,
+          "energy_used_pct": 0.07738206054598917,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 57,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.106,
+      "distance_m": 263.0,
+      "flow_ms": 0.28,
+      "load_kg": 20.0,
+      "in_water": true,
+      "water_fraction": 0.75,
+      "avg_terrain_factor": 1.76,
+      "power_w": 3437.0,
+      "speed_ms": 1.52,
+      "energy_needed_pct": 1.8192,
+      "usable_pct": 0.0765,
+      "safety_margin_pct": -1.7427,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "BEACON_HERE",
+        "ours": "BEACON_HERE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": false,
+          "battery_left": 0.0,
+          "energy_used_pct": 1.8731803172819517,
+          "beacon_triggered": false,
+          "survivor_reached": false,
+          "beacon_ready": false
+        },
+        "fixed_30": {
+          "arrived": false,
+          "battery_left": 0.10649648342593575,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        },
+        "ours": {
+          "arrived": false,
+          "battery_left": 0.10649648342593575,
+          "energy_used_pct": 0.0,
+          "beacon_triggered": true,
+          "survivor_reached": false
+        }
+      }
+    },
+    {
+      "scenario": 58,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.479,
+      "distance_m": 97.0,
+      "flow_ms": 0.16,
+      "load_kg": 2.6,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.1,
+      "power_w": 189.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.021,
+      "usable_pct": 0.4493,
+      "safety_margin_pct": 0.4283,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.4574798894292724,
+          "energy_used_pct": 0.021854384189111037,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.4574798894292724,
+          "energy_used_pct": 0.021854384189111037,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.4562793542096778,
+          "energy_used_pct": 0.02305491940870566,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    },
+    {
+      "scenario": 59,
+      "source": "[calculated] physics model v2",
+      "battery_pct": 0.371,
+      "distance_m": 127.0,
+      "flow_ms": 0.04,
+      "load_kg": 13.4,
+      "in_water": false,
+      "water_fraction": 0.0,
+      "avg_terrain_factor": 1.1,
+      "power_w": 211.0,
+      "speed_ms": 2.5,
+      "energy_needed_pct": 0.03,
+      "usable_pct": 0.3405,
+      "safety_margin_pct": 0.3106,
+      "beacon_reserve": 0.03,
+      "decisions": {
+        "fixed_10": "FULL_SPEED",
+        "fixed_30": "FULL_SPEED",
+        "ours": "CRUISE"
+      },
+      "outcomes": {
+        "fixed_10": {
+          "arrived": true,
+          "battery_left": 0.3392912658079488,
+          "energy_used_pct": 0.031229007207262224,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "fixed_30": {
+          "arrived": true,
+          "battery_left": 0.3392912658079488,
+          "energy_used_pct": 0.031229007207262224,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        },
+        "ours": {
+          "arrived": true,
+          "battery_left": 0.338116845337725,
+          "energy_used_pct": 0.03240342767748607,
+          "beacon_triggered": false,
+          "survivor_reached": true,
+          "beacon_ready": true
+        }
+      }
+    }
+  ]
+}

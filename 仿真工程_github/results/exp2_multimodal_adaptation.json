@@ -1,0 +1,2764 @@
+{
+  "title": "Exp2: Multi-Modal Detection Adaptation",
+  "hypothesis": "Under degradation, cross-modal attention auto-switches dominant sensor: RGB->Lidar->Radar->IR cascade",
+  "source": "[measured] Webots RGB + realistic multi-modal simulation",
+  "design": "6 degrad x 3 configs x 3 stages x 3 repeats = 162 runs",
+  "reference": "SAMFusion (ECCV 2024)",
+  "timestamp": "2026-05-28 02:37:14",
+  "results": [
+    {
+      "degradation": "clean",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 83810,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 1,
+      "best_conf": 0.42,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "clean",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 14592,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 1,
+      "best_conf": 0.414,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "clean",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 3278,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 1,
+      "best_conf": 0.468,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "clean",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 97196,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 2,
+      "best_conf": 0.649,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 36048,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 2,
+      "best_conf": 0.65,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 32098,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 1,
+      "best_conf": 0.57,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "clean",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 29256,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 3,
+      "best_conf": 0.725,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 18289,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 2,
+      "best_conf": 0.735,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 96530,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 3,
+      "best_conf": 0.755,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 13434,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 1,
+      "best_conf": 0.427,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "clean",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 88696,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 1,
+      "best_conf": 0.384,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "clean",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 97080,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 1,
+      "best_conf": 0.472,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "clean",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 71482,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 2,
+      "best_conf": 0.655,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 11395,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 2,
+      "best_conf": 0.677,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 77397,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 2,
+      "best_conf": 0.627,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 55302,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 2,
+      "best_conf": 0.713,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 4165,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 2,
+      "best_conf": 0.728,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 3905,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 2,
+      "best_conf": 0.719,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 12280,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "clean",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 28657,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "clean",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 30495,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "clean",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 66237,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 1,
+      "best_conf": 0.668,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 78907,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 2,
+      "best_conf": 0.738,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 3478,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 2,
+      "best_conf": 0.688,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 73563,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 4,
+      "best_conf": 0.762,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 26062,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 3,
+      "best_conf": 0.802,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "clean",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 93850,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.42,
+        "w_ir": 0.18,
+        "w_radar": 0.15,
+        "w_lidar": 0.25
+      },
+      "fused": 3,
+      "best_conf": 0.703,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 85181,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 1,
+      "best_conf": 0.465,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 91924,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 1,
+      "best_conf": 0.435,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 71426,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 1,
+      "best_conf": 0.465,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 54987,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 1,
+      "best_conf": 0.536,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 28893,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 2,
+      "best_conf": 0.542,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 58878,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 77236,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 2,
+      "best_conf": 0.621,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 36463,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 2,
+      "best_conf": 0.626,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 851,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 1,
+      "best_conf": 0.385,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 99458,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 1,
+      "best_conf": 0.454,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 20926,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 91506,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 1,
+      "best_conf": 0.416,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 55392,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 2,
+      "best_conf": 0.552,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 44597,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 1,
+      "best_conf": 0.568,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 36421,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 20379,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 3,
+      "best_conf": 0.64,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 28221,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 4,
+      "best_conf": 0.589,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 44118,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 2,
+      "best_conf": 0.651,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 13396,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 12156,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 49797,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 12676,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 2,
+      "best_conf": 0.61,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 47052,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 2,
+      "best_conf": 0.58,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 45082,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 2,
+      "best_conf": 0.599,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 79131,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 4,
+      "best_conf": 0.671,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 34671,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 4,
+      "best_conf": 0.655,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "light_fog",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 5695,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.25,
+        "w_ir": 0.2,
+        "w_radar": 0.2,
+        "w_lidar": 0.35
+      },
+      "fused": 3,
+      "best_conf": 0.643,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 95647,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 60217,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 70284,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 16361,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.465,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 49615,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.508,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 10328,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.498,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 72357,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 3,
+      "best_conf": 0.659,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 38427,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 3,
+      "best_conf": 0.638,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 82397,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 3,
+      "best_conf": 0.635,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 81070,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 47400,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 75674,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 25203,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 92349,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.505,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 9116,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.525,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 6006,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 3,
+      "best_conf": 0.642,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 86673,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 2,
+      "best_conf": 0.639,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 29871,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 2,
+      "best_conf": 0.672,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 37930,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.574,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 10458,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 30512,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.445,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 13238,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.532,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 49823,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 2,
+      "best_conf": 0.5,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 36434,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 59429,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 3,
+      "best_conf": 0.614,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 83320,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 2,
+      "best_conf": 0.602,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "heavy_smoke",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 47819,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.05,
+        "w_ir": 0.25,
+        "w_radar": 0.4,
+        "w_lidar": 0.3
+      },
+      "fused": 2,
+      "best_conf": 0.619,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "dark",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 21319,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "dark",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 48520,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "dark",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 46566,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "dark",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 27460,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 1,
+      "best_conf": 0.597,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 87841,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 1,
+      "best_conf": 0.594,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 34993,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 1,
+      "best_conf": 0.569,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 91988,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 3,
+      "best_conf": 0.738,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 89593,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 2,
+      "best_conf": 0.66,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 84939,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 2,
+      "best_conf": 0.671,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 9358,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "dark",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 79840,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "dark",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 83227,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "dark",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 22431,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "dark",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 70010,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 1,
+      "best_conf": 0.566,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 95568,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 1,
+      "best_conf": 0.593,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 32087,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 2,
+      "best_conf": 0.69,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 21417,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 3,
+      "best_conf": 0.677,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 60589,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 4,
+      "best_conf": 0.658,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 49735,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "dark",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 35382,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "dark",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 83886,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "dark",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 90198,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 2,
+      "best_conf": 0.584,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 73000,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 1,
+      "best_conf": 0.621,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 28785,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 1,
+      "best_conf": 0.591,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 89733,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 2,
+      "best_conf": 0.695,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 42504,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 3,
+      "best_conf": 0.672,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "dark",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 7331,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.02,
+        "w_ir": 0.45,
+        "w_radar": 0.3,
+        "w_lidar": 0.23
+      },
+      "fused": 3,
+      "best_conf": 0.7,
+      "best_src": "ir"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 30021,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 4207,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.477,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 41347,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 52581,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 35093,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 8675,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 27653,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 2,
+      "best_conf": 0.735,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 74341,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.768,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 94098,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.733,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 41245,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 27869,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.448,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 85909,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 65435,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 2,
+      "best_conf": 0.429,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 51856,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.476,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 84259,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.436,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 60142,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 2,
+      "best_conf": 0.748,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 18726,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 2,
+      "best_conf": 0.733,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 34718,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 3,
+      "best_conf": 0.776,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 18301,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 32325,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 97647,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 73579,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.468,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 70644,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 1,
+      "best_conf": 0.466,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 34438,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 97912,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 4,
+      "best_conf": 0.738,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 76622,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 2,
+      "best_conf": 0.729,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "water_reflection",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 56155,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.15,
+        "w_ir": 0.05,
+        "w_radar": 0.5,
+        "w_lidar": 0.3
+      },
+      "fused": 3,
+      "best_conf": 0.78,
+      "best_src": "radar"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 76484,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.435,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 52350,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.445,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "land_12m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 47447,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.416,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 28746,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.48,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 18131,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.52,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "land_12m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 66784,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.52,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 64686,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 3,
+      "best_conf": 0.683,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 11915,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 3,
+      "best_conf": 0.636,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "land_12m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 99061,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 2,
+      "best_conf": 0.674,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 6175,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.409,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 14371,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.426,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "water_5m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 20033,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.436,
+      "best_src": "rgb_only"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 82240,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 20969,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.49,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "water_5m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 89192,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.524,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 55333,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 2,
+      "best_conf": 0.642,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 78172,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 4,
+      "best_conf": 0.654,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "water_5m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 8326,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.683,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 0,
+      "seed": 50432,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 1,
+      "seed": 50019,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "near_2m",
+      "config": "rgb_only",
+      "repeat": 2,
+      "seed": 78104,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 0,
+      "best_conf": 0,
+      "best_src": "none"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 0,
+      "seed": 61348,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.563,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 1,
+      "seed": 69352,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 2,
+      "best_conf": 0.537,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "near_2m",
+      "config": "rgb_ir",
+      "repeat": 2,
+      "seed": 32953,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 1,
+      "best_conf": 0.527,
+      "best_src": "rgb"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 0,
+      "seed": 72512,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 3,
+      "best_conf": 0.658,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 1,
+      "seed": 1504,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 2,
+      "best_conf": 0.687,
+      "best_src": "lidar"
+    },
+    {
+      "degradation": "thermal_clutter",
+      "stage": "near_2m",
+      "config": "ours_full",
+      "repeat": 2,
+      "seed": 89166,
+      "source": "[measured] Webots + realistic simulation",
+      "weights": {
+        "w_rgb": 0.2,
+        "w_ir": 0.05,
+        "w_radar": 0.35,
+        "w_lidar": 0.4
+      },
+      "fused": 3,
+      "best_conf": 0.689,
+      "best_src": "lidar"
+    }
+  ]
+}
